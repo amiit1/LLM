@@ -91,6 +91,19 @@ body {
   animation: reveal 0.28s ease;
 }
 
+.plot-shell {
+  min-height: 220px;
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(241, 245, 249, 0.75), rgba(226, 232, 240, 0.38));
+  padding: 0.5rem;
+}
+
+.plot-label {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.62rem;
+  fill: #334155;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

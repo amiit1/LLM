@@ -67,3 +67,67 @@ class AnalyzeResponse(BaseModel):
     stems: list[str]
     pos_tags: list[PosTagItem]
     entities: list[EntityItem]
+
+
+class CorpusEmbeddingRequest(BaseModel):
+    """Request model to embed an input text against the custom corpus."""
+
+    text: str = Field(..., min_length=1, description="Input text to embed")
+    top_k: int = Field(5, ge=1, le=15, description="Number of nearest corpus neighbors")
+
+
+class CorpusNeighborItem(BaseModel):
+    """Nearest corpus entry for a query embedding."""
+
+    doc_id: int
+    text: str
+    score: float
+
+
+class CorpusEmbeddingResponse(BaseModel):
+    """Response model for corpus-level embedding lookup."""
+
+    query_text: str
+    dimension: int
+    vector: list[float]
+    neighbors: list[CorpusNeighborItem]
+    corpus_size: int
+
+
+class EmbeddingPoint(BaseModel):
+    """2D point for embedding visualization."""
+
+    label: str
+    text: str
+    x: float
+    y: float
+    importance: float
+
+
+class EmbeddingProjectionResponse(BaseModel):
+    """Response model for PCA/t-SNE embedding projection."""
+
+    method: str
+    points: list[EmbeddingPoint]
+
+
+class CorpusItem(BaseModel):
+    """Single corpus item."""
+
+    doc_id: int
+    text: str
+
+
+class CorpusResponse(BaseModel):
+    """Response model that returns the custom corpus documents."""
+
+    documents: list[CorpusItem]
+
+
+class EmbeddingInfoResponse(BaseModel):
+    """Response model with high-level embedding setup details."""
+
+    technique: str
+    corpus_size: int
+    vocabulary_size: int
+    vector_dimension: int

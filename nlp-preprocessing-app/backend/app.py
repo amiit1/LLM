@@ -7,6 +7,7 @@ Keeping app startup logic in one place makes the project easier to scale.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from routes.embedding_routes import router as embedding_router
 from routes.nlp_routes import router as nlp_router
 
 
@@ -33,6 +34,7 @@ def health_check() -> dict:
 
 
 app.include_router(nlp_router)
+app.include_router(embedding_router)
 
 
 if __name__ == "__main__":
