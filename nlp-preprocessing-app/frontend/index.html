@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NLP Preprocessing Lab</title>
+
+    <!-- Tailwind via CDN keeps setup simple for beginners. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="min-h-screen">
+    <div class="background-art" aria-hidden="true"></div>
+
+    <main class="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <section class="mb-8 grid gap-4 rounded-3xl border border-slate-200/70 bg-white/75 p-6 backdrop-blur-md shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="eyebrow">NLP PREPROCESSING APP</p>
+            <h1 class="display-title">Text Analysis Playground</h1>
+            <p class="mt-2 max-w-2xl text-sm text-slate-600">
+              Run tokenization, lemmatization, stemming, POS tagging, and NER from one clean interface.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="sampleBtn" class="btn-secondary">Sample Text</button>
+          </div>
+        </div>
+
+        <label for="inputText" class="text-sm font-semibold text-slate-700">Input Text</label>
+        <textarea
+          id="inputText"
+          rows="6"
+          class="w-full rounded-2xl border border-slate-300 bg-white/90 p-4 text-sm text-slate-800 outline-none transition-all duration-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+          placeholder="Type or paste text here..."
+        ></textarea>
+
+        <div class="flex flex-wrap gap-2">
+          <button data-endpoint="tokenize" class="btn-action">Tokenize</button>
+          <button data-endpoint="lemmatize" class="btn-action">Lemmatize</button>
+          <button data-endpoint="stem" class="btn-action">Stem</button>
+          <button data-endpoint="pos-tag" class="btn-action">POS Tag</button>
+          <button data-endpoint="ner" class="btn-action">NER</button>
+          <button id="analyzeBtn" class="btn-primary">Analyze All</button>
+        </div>
+
+        <div class="flex items-center justify-between gap-3">
+          <p id="statusText" class="text-sm text-slate-500">Ready.</p>
+          <button id="copyBtn" class="btn-secondary">Copy Result</button>
+        </div>
+      </section>
+
+      <section id="loadingBox" class="mb-6 hidden items-center gap-3 rounded-2xl border border-cyan-200 bg-cyan-50/80 p-4 text-cyan-900">
+        <span class="spinner" aria-hidden="true"></span>
+        <p class="text-sm font-medium">Processing your request...</p>
+      </section>
+
+      <section id="resultPanel" class="result-panel hidden rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-lg backdrop-blur-sm">
+        <div class="mb-4 flex items-center justify-between">
+          <h2 id="resultTitle" class="text-xl font-semibold text-slate-800">Result</h2>
+          <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">Output</span>
+        </div>
+
+        <div id="resultContent" class="space-y-4 text-sm text-slate-700"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
